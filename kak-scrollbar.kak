@@ -4,7 +4,7 @@
 
 hook window InsertKey .* update-scrollbar
 hook window NormalKey .* update-scrollbar
-hook window InsertChar .* update-scrollbar-with-check
+hook window InsertChar .* update-scrollbar
 hook window NormalIdle .* update-scrollbar
 hook window InsertIdle .* update-scrollbar
 
@@ -12,14 +12,6 @@ define-command update-scrollbar -override %{
     calculate-scrollbar-flags
     redraw-scrollbar
 	save-cursor-state
-}
-
-define-command update-scrollbar-with-check -override %{
-	try %{ check-if-pos-same } catch %{
-	    calculate-scrollbar-flags
-	    redraw-scrollbar
-    	save-cursor-state
-	}
 }
 
 # The line-specs option for our scrollbar
@@ -33,27 +25,6 @@ declare-option str scrollbar_char '▓'
 declare-option str scrollbar_sel_color1 "{rgb:ffb060}"
 declare-option str scrollbar_sel_color2 "{rgb:ffb0b0}"
 declare-option str scrollbar_sel_char '█'
-
-# Save our cursor information so we know when to redraw and when not to.
-declare-option int scrollbar_last_cursor_line
-declare-option str scrollbar_last_window_range
-declare-option int scrollbar_last_buf_line_count
-
-# Check if window situation is the same; if not, raise an error so we can "catch" it
-define-command check-if-pos-same -override %{
-	eval %sh{
-		[ "$kak_opt_scrollbar_last_cursor_line" -ne "$kak_cursor_line" ] ||\
-		[ "$kak_opt_scrollbar_last_buf_line_count" -ne "$kak_buf_line_count" ] ||\
-		[ "$kak_opt_scrollbar_last_window_range" != "$kak_window_range" ] && echo "fail"
-	}
-}
-
-# Save current window situation for later checks.
-define-command save-cursor-state -override -hidden %{
-    set-option buffer scrollbar_last_cursor_line %val{cursor_line}
-    set-option buffer scrollbar_last_buf_line_count %val{buf_line_count}
-    set-option buffer scrollbar_last_window_range %val{window_range}
-}
 
 # Gather arguments to send to our C script.
 # The C program will process this information and return a string for our line-desc
