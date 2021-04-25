@@ -48,12 +48,12 @@ define-command calculate-scrollbar-flags -hidden -override %{
         set --  $kak_window_range
         set --  "$1" \
                 "$(( $1 + $3 ))" \
-				"$kak_opt_scrollbar_char" \
-			    "$kak_selections_desc" \
-				"$kak_opt_scrollbar_sel_col2$kak_opt_scrollbar_sel_char" \
-				"$kak_opt_scrollbar_sel_col1$kak_opt_scrollbar_sel_char" \
-				"$kak_buf_line_count" \
-				"$kak_window_height"
+                "$kak_opt_scrollbar_char" \
+                "$kak_selections_desc" \
+                "$kak_opt_scrollbar_sel_col2$kak_opt_scrollbar_sel_char" \
+                "$kak_opt_scrollbar_sel_col1$kak_opt_scrollbar_sel_char" \
+                "$kak_buf_line_count" \
+                "$kak_window_height"
         echo "set-option buffer scrollbar_flags $kak_timestamp " $(kak-calc-scrollbar "$@")
     }
 }
