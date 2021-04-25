@@ -39,8 +39,6 @@ Once you have scrollbar.kak and calc-scrollbar-kak installed, there is not much 
 
 `set-option global enable-scrollbar true`
 
-You can also use two shortcut commands to toggle the scrollbar in a single stroke: `toggle-scrollbar-global` and `toggle-scrollbar-window`.
-
 ## Features & limitations
 
 * The scrollbar can't display past the last line of the buffer, meaning that it will start to disappear as your view scrolls past the end of your document.

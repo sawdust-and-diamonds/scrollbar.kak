@@ -103,24 +103,3 @@ define-command check-hooks-enabled -hidden -override %{
         [ "$kak_opt_scrollbar_disable_hooks" = "true" ] && echo "fail"
     }
 }
-
-# Helper commands to toggle the scrollbar
-define-command toggle-scrollbar-global -override -docstring %{
-    Toggle the scrollbar for all documents.
-} %{
-    eval %sh{
-        [ "$kak_opt_enable_scrollbar" = "true" ] \
-            && set-option global enable_scrollbar true \
-            || set-option global enable_scrollbar false \
-    }
-}
-
-define-command toggle-scrollbar-window -override -docstring %{
-    Toggle the scrollbar for this window scope, i.e. this individual buffer in this individual client. Remember that window settings override global settings!
-} %{
-    eval %sh{
-        [ "$kak_opt_enable_scrollbar" = "true" ] \
-            && set-option window enable_scrollbar true \
-            || set-option window enable_scrollbar false \
-    }
-}
