@@ -4,7 +4,8 @@
 
 // We'll use global variables for our simple script-like program
 int buffer_height, window_height, bar_start, bar_end;
-char *bar_format, *sel_format1, *sel_format2, *sel_str, *saveptr;
+char *bar_format, *sel_str, *sel_format1, *sel_format2, *saveptr;
+char *bar_char, *sel_char;
 int *flags_by_line;
     
 // Dead simple swap routine. Nothing fancy - have faith in the compiler!
@@ -66,7 +67,7 @@ char *get_flag_string() {
     FILE* stream = open_memstream(&output, &outputSize);
 
     int i;
-    char *getfmt[4] = {"", bar_format, sel_format1, sel_format2};
+    char *getfmt[4] = {"", bar_char, sel_format2, sel_format1};
     for (i=0 ; i<=window_height ; i++) {
         int fmt_i=flags_by_line[i];
         if (fmt_i) fprintf(stream, "%d|%s ", (i+bar_start), getfmt[fmt_i]);
@@ -75,18 +76,28 @@ char *get_flag_string() {
     return output;
 }
 
+char *append_char(char *str, char *c) {
+    char *new_str = malloc(strlen(str)+1);
+    sprintf(new_str, "%s%s", str, c);
+    return new_str;
+}
+
 #ifndef DOING_UNIT_TESTS    // Don't call main() if we're running tests
 // Our main process
 int main(int argc, char **argv) {
     // Initialize argument variables
     bar_start = strtol(argv[1], NULL, 10);          // Arg 1: Scrollbar start pos
     bar_end = strtol(argv[2], NULL, 10);            // Arg 2: Scrollbar end pos
-    bar_format = argv[3];                           // Arg 3: Scrollbar format
-    sel_str = argv[4];                              // Arg 4: Selection descs
-    sel_format1 = argv[5];                          // Arg 5: Selection format - in bar
-    sel_format2 = argv[6];                          // Arg 6: Selection format - outside bar
-    buffer_height = strtol(argv[7], NULL, 10);      // Arg 7: Buffer height 
-    window_height = strtol(argv[8], NULL, 10);      // Arg 8: Window height
+    sel_str = argv[3];                              // Arg 4: Selection descs
+    bar_char = argv[4];                             // Arg 5: Scrollbar character
+    sel_char = argv[5];                             // Arg 6: Selection character
+    buffer_height = strtol(argv[6], NULL, 10);      // Arg 7: Buffer height 
+    window_height = strtol(argv[7], NULL, 10);      // Arg 8: Window height
+
+    // Create selection format strings
+    bar_format = bar_char;
+    sel_format1 = append_char("{ScrollbarSel}", sel_char);
+    sel_format2 = append_char("{ScrollbarHL}", sel_char);
 
     // Set up our array of flags (starting at 0)
     flags_by_line = calloc(window_height, sizeof(int));

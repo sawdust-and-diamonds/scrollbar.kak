@@ -32,13 +32,10 @@ define-command update-scrollbar -hidden -override %{
 # The line-specs option for our scrollbar
 declare-option -hidden line-specs scrollbar_flags
 
-# Set our "Scrollbar" face and character
-face global Scrollbar rgb:808080
+face global Scrollbar rgb:808080    # Set our Scrollbar face and character
+face global ScrollbarSel rgb:9840d8 # Show selections within the scrollbar
+face global ScrollbarHL rgb:ffb060  # For selections outside of the scrollbar
 declare-option str scrollbar_char '▓'
-# Unfortunately, I can't get our face information from a %sh expansion, so I've
-# had to store this extra colour information with declare-option:
-declare-option str scrollbar_sel_col1 "{rgb:9840d8}"
-declare-option str scrollbar_sel_col2 "{rgb:ffb060}"
 declare-option str scrollbar_sel_char '█'
 
 # Gather arguments to send to our C script.
@@ -49,15 +46,14 @@ define-command calculate-scrollbar-flags -hidden -override %{
         set --  $kak_window_range
         set --  "$1" \
                 "$(( $1 + $3 ))" \
-                "$kak_opt_scrollbar_char" \
                 "$kak_selections_desc" \
-                "$kak_opt_scrollbar_sel_col2$kak_opt_scrollbar_sel_char" \
-                "$kak_opt_scrollbar_sel_col1$kak_opt_scrollbar_sel_char" \
+                "$kak_opt_scrollbar_char" \
+                "$kak_opt_scrollbar_sel_char" \
                 "$kak_buf_line_count" \
                 "$kak_window_height"
         echo "set-option buffer scrollbar_flags $kak_timestamp " $(kak-calc-scrollbar "$@")
     }
-}
+}   
 
 # Graphically update the scrollbar
 define-command redraw-scrollbar -hidden -override %{
