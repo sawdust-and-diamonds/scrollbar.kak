@@ -11,6 +11,7 @@ hook global NormalKey .* update-scrollbar
 hook global InsertChar .* update-scrollbar
 hook global NormalIdle .* update-scrollbar
 hook global InsertIdle .* update-scrollbar
+hook global PromptIdle .* update-scrollbar
 
 # Main scrollbar display loop
 define-command update-scrollbar -hidden -override %{
@@ -82,6 +83,7 @@ declare-option -hidden bool scrollbar_disable_hooks true
 # Tell the hooks not to run while option is disabled
 hook global WinSetOption enable_scrollbar=true %{
     set-option window scrollbar_disable_hooks false
+    update-scrollbar
 }
 
 # Remove the scrollbar for this window
