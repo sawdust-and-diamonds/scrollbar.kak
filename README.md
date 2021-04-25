@@ -4,9 +4,7 @@ This is a scrollbar for [*kakoune*](https://github.com/mawww/kakoune), the educa
 
 It uses the line-flagging feature and a compiled script to provide a real-time, smooth-as-silk scrollbar display. A limitation of this is that the scrollbar isn't a clickable UI element--you'll still have to roll your sleeves up and apply finger to keyboard to navigate around that document. This is kak, so you oughtta either be or get used to it!
 
-This is version 0.0.1
-
-The whole feature is--and will remain--somewhat experimental and doesn't promise a perfect experience, because it's not easy to implement this is as a kakoune plugin.
+This is *version 0.0.1i*. The whole feature is--and will remain--somewhat experimental and doesn't promise anything like a perfect experience--because it's not easy at all to implement as just a kakoune plugin.
 
 ## See selections outside your current view
 
@@ -23,11 +21,13 @@ It's the simplest C program ever and should be compilable on almost every system
 gcc kak-scrollbar.c -o kak-calc-scrollbar
 ```
 
-Or have `plug` do it for you--add the following to your kakrc:
+Then, put the new file in a location in your PATH--`~/.local/bin` is recommended.
+
+Or you could just have `plug` do it for you--add the following to your kakrc (again, please pay attention to where you output the file):
 
 ```
 plug "kak-lsp/scrollbar.kak" do %{
-    gcc kak-scrollbar.c -o kak-calc-scrollbar
+    gcc kak-scrollbar.c -o ~/.local/bin/kak-calc-scrollbar
 }
 ```
 
@@ -69,7 +69,6 @@ The `ScrollBar` face: This sets the main face for your scrollbar column, i.e. it
 
 `scrollbar_sel_col1`: Sets the colour for in-view selections.
 `scrollbar_sel_col2`: Sets the colour for out-of-view selections, i.e. the scrollbar's display of selections that are outside your current view. I find it helpful to set this to a more... alarming colour, so that you notice when you are editing text outside your current view.
-`scrollbar_sel_col_main`: Sets the colour for your main selection or cursor. I like to set this to a more subdued colour, as it will be constantly visible
 
 The above colour options all take a format identical to that usable in any face or line-specs value. Enter `:doc highlighters` while in kakoune for more information. Examples:
 
