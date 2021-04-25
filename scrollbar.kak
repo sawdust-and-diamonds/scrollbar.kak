@@ -32,9 +32,11 @@ define-command update-scrollbar -hidden -override %{
 # The line-specs option for our scrollbar
 declare-option -hidden line-specs scrollbar_flags
 
-face global Scrollbar rgb:808080    # Set our Scrollbar face and character
-face global ScrollbarSel rgb:9840d8 # Show selections within the scrollbar
-face global ScrollbarHL rgb:ffb060  # For selections outside of the scrollbar
+# I've chosen some default colours and scrollbar character styles which work
+# well for my colour schemes; please customize them at your leisure.
+face global Scrollbar +d@Default             # Set our Scrollbar face and character
+face global ScrollbarSel +r@PrimarySelection # Show selections within the scrollbar
+face global ScrollbarHL +r@SecondaryCursor   # For selections outside of the scrollbar
 declare-option str scrollbar_char '▓'
 declare-option str scrollbar_sel_char '█'
 

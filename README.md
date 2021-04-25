@@ -4,7 +4,7 @@ This is a scrollbar for [*kakoune*](https://github.com/mawww/kakoune), the educa
 
 It uses the line-flagging feature and a compiled script to provide a real-time, smooth-as-silk scrollbar display. A limitation of this is that the scrollbar isn't a clickable UI element—you'll still have to roll your sleeves up and apply finger to keyboard to navigate around that document. This is kak, so you oughtta either be or get used to it!
 
-This is **version 0.0.1**. The whole feature is—and will remain—somewhat experimental, and won't promise anything like a perfect experience, because it's not easy to implement as a plugin.
+This is **version 0.0.2**. The whole feature is—and will remain—somewhat experimental, and won't promise anything like a perfect experience, because it's not easy to implement as a plugin.
 
 ## See selections outside your current view
 
@@ -63,23 +63,24 @@ In the meantime, if you have any ideas as to how I can make `scrollbar-kak` more
 
 ## Customization
 
-There are a number of options you can edit to customize your scrollbar's look:
+There are a number of *face* options you can edit to customize your scrollbar's look:
 
-The `ScrollBar` face: This sets the main face for your scrollbar column, i.e. its background and scrollbar colours. Change it like this:
+`Scrollbar`: This sets the main face for your scrollbar column, i.e. its background colour and the main scrollbar colour.
+`ScrollbarSel`: Sets the colour for in-view selections.
+`ScrollbarHL`: Sets the colour for out-of-view selections, i.e. the scrollbar's display of selections that are outside your current view. I find it helpful to set this to a more... alarming colour, so that you notice when you are editing text outside your current view.
 
-`set-face`
+Here are a few examples of how you can change the scrollbar colours. Please enter `:doc faces` into kak for more information:
 
-`scrollbar_sel_col1`: Sets the colour for in-view selections.
-`scrollbar_sel_col2`: Sets the colour for out-of-view selections, i.e. the scrollbar's display of selections that are outside your current view. I find it helpful to set this to a more... alarming colour, so that you notice when you are editing text outside your current view.
+`set-face global Scrollbar rgb:7080a0,rgb:281090`
+`set-face global ScrollbarSel green`
+`set-face global ScrollbarHL @Information`
 
-The above colour options all take a format identical to that usable in any face or line-specs value. Enter `:doc highlighters` while in kakoune for more information. Examples:
-
-`...`
+You can change which characters are used for displaying the scrollbar with the following options:
 
 `scrollbar_char` : Sets the character used for the scrollbar.
 `scrollbar_sel_char` : Sets the character used for selections.
 
-If you've set up the scrollbar and played about with addin new highlighters, you might want to push it back to its left-most position on the highlighter stack. To do so, use the `move-scrollbar-to-left` command.
+If you've set up the scrollbar and played about with adding new highlighters, you might want to push it back to its left-most position on the highlighter stack. To do so, use the `move-scrollbar-to-left` command.
 
 ## License
 
