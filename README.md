@@ -4,7 +4,7 @@ This is a scrollbar for [*kakoune*](https://github.com/mawww/kakoune), the educa
 
 It uses the line-flagging feature and a compiled script to provide a real-time, smooth-as-silk scrollbar display. A limitation of this is that the scrollbar isn't a clickable UI element—you'll still have to roll your sleeves up and apply finger to keyboard to navigate around that document. This is kak, so you oughtta either be or get used to it!
 
-This is **version 0.0.1**. The whole feature is—and will remain—somewhat experimental, and ca't promise anything like a perfect experience, because it's not easy to implement as a plugin.
+This is **version 0.0.1**. The whole feature is—and will remain—somewhat experimental, and won't promise anything like a perfect experience, because it's not easy to implement as a plugin.
 
 ## See selections outside your current view
 
