@@ -78,6 +78,10 @@ char *get_flag_string() {
 
 char *append_char(char *str, char *c) {
     char *new_str = malloc(strlen(str)+1);
+    if (!new_str) {
+        fprintf(stderr, "Can't allocate string memory\n");
+        exit(EXIT_FAILURE);
+    }
     sprintf(new_str, "%s%s", str, c);
     return new_str;
 }
@@ -101,6 +105,10 @@ int main(int argc, char **argv) {
 
     // Set up our array of flags (starting at 0)
     flags_by_line = calloc(window_height, sizeof(int));
+    if (!flags_by_line) { 
+        fprintf(stderr, "Can't allocate memory for flags_by_line\n"); 
+        exit(EXIT_FAILURE);
+    }
 
     // From now on, window_height needs to use a C-style range from 0 to (h-1)
     window_height--;
