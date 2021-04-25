@@ -2,9 +2,9 @@
 
 This is a scrollbar for [*kakoune*](https://github.com/mawww/kakoune), the educated programmer's terminal editor of choice.
 
-It uses the line-flagging feature and a compiled script to provide a real-time, smooth-as-silk scrollbar display. A limitation of this is that the scrollbar isn't a clickable UI element--you'll still have to roll your sleeves up and apply finger to keyboard to navigate around that document. This is kak, so you oughtta either be or get used to it!
+It uses the line-flagging feature and a compiled script to provide a real-time, smooth-as-silk scrollbar display. A limitation of this is that the scrollbar isn't a clickable UI element—you'll still have to roll your sleeves up and apply finger to keyboard to navigate around that document. This is kak, so you oughtta either be or get used to it!
 
-This is ***version 0.0.1***. The whole feature is--and will remain--somewhat experimental and doesn't promise anything like a perfect experience--because it's not easy at all to implement as just a kakoune plugin.
+This is **version 0.0.1**. The whole feature is—and will remain—somewhat experimental, and ca't promise anything like a perfect experience, because it's not easy to implement as a plugin.
 
 ## See selections outside your current view
 
@@ -21,9 +21,9 @@ It's the simplest C program ever and should be compilable on almost every system
 gcc kak-calc-scrollbar.c -o kak-calc-scrollbar
 ```
 
-Then, put the new file in a location in your PATH--`~/.local/bin` is recommended, on Linux.
+Then, put the new file in a location in your PATH—`~/.local/bin` is recommended, on Linux.
 
-Or you could just have `plug` do it for you--add the following to your kakrc (again, please pay attention to where you output the file):
+Or you could just have `plug` do it for you—add the following to your kakrc (again, please pay attention to where you output the file):
 
 ```
 plug "kak-lsp/scrollbar.kak" do %{
@@ -31,7 +31,7 @@ plug "kak-lsp/scrollbar.kak" do %{
 }
 ```
 
-If you prefer to use another compilation system--`clang` for instance--which shouldn't be any problem--then I'll assume you're knowledgeable enough to manage by yourself.
+If you prefer to use another compilation system—`clang` for instance—which shouldn't be any problem—then I'll assume you're knowledgeable enough to manage by yourself.
 
 ## Using the scrollbar
 
@@ -55,7 +55,7 @@ Once you have scrollbar.kak and calc-scrollbar-kak installed, there is not much 
 
 My next project is to write an update for kak's core that will allow you to build your own custom version of kak with 'baked-in' scrollbar functionality, and which won't have these limitations.
 
-Hopefully it'll be possible to host this feature on the wonderful [hakoune](https://github.com/Delapouite/hakoune) project, a fork of kak with optional power features--for the most power-hungry of power users.
+Hopefully it'll be possible to host this feature on the wonderful [hakoune](https://github.com/Delapouite/hakoune) project, a fork of kak with optional power features—for the most power-hungry of power users.
 
 ### Get in touch with more ideas
 
