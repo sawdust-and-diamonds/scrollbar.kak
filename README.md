@@ -18,16 +18,16 @@ Then you'll need to compile `kak-calc-scrollbar` to have your scrollbar.kak scri
 It's the simplest C program ever and should be compilable on almost every system. You can either pop into to the command line and enter:
 
 ```
-gcc kak-scrollbar.c -o kak-calc-scrollbar
+gcc kak-calc-scrollbar.c -o kak-calc-scrollbar
 ```
 
-Then, put the new file in a location in your PATH--`~/.local/bin` is recommended.
+Then, put the new file in a location in your PATH--`~/.local/bin` is recommended, on Linux.
 
 Or you could just have `plug` do it for you--add the following to your kakrc (again, please pay attention to where you output the file):
 
 ```
 plug "kak-lsp/scrollbar.kak" do %{
-    gcc kak-scrollbar.c -o ~/.local/bin/kak-calc-scrollbar
+    gcc kak-calc-scrollbar.c -o ~/.local/bin/kak-calc-scrollbar
 }
 ```
 
@@ -37,7 +37,9 @@ If you prefer to use another compilation system--`clang` for instance--which sho
 
 Once you have scrollbar.kak and calc-scrollbar-kak installed, there is not much to do. Turn on the `enable-scrollbar` option to make it appear. You can set it for all windows in your `kakrc` like so:
 
-`set-option window enable-scrollbar true`
+`set-option global enable-scrollbar true`
+
+You can also use two shortcut commands to toggle the scrollbar in a single stroke: `toggle-scrollbar-global` and `toggle-scrollbar-window`.
 
 ## Features & limitations
 
