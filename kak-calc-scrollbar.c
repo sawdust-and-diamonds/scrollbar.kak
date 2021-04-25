@@ -17,7 +17,7 @@ void swap_i(int* x, int* y) {
 
 // Convert a position a document to a position in our list of flags
 int get_flag_pos(int doc_pos) {
-    float rel_pos = (doc_pos-1) / (float)(buffer_height-1);
+    float rel_pos = (buffer_height>1) ? (doc_pos-1) / (float)(buffer_height-1) : 0;
     int flag_pos  = (int) window_height*rel_pos + 0.5;
     return flag_pos;
 }
