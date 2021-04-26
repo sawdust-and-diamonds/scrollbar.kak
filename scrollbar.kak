@@ -1,6 +1,13 @@
 ###############################################################################
 #                               Scrollbar.kak                                 #
 ###############################################################################
+declare-option -hidden str scrollbar_plugin_path %sh{ dirname "$kak_source" }
+
+evaluate-commands %sh{
+    if [ ! -x "$kak_opt_scrollbar_plugin_path"/kak-calc-scrollbar ]; then
+        echo fail kak-calc-scrollbar helper not compiled, scrollbar plugin disabled
+    fi
+}
 
 # V0.0.1 makes no attempt to be computationally efficient!
 # So, the scrollbar loop will be running all the time.
