@@ -21,13 +21,11 @@ It's the simplest C program ever and should be compilable on almost every system
 gcc kak-calc-scrollbar.c -o kak-calc-scrollbar
 ```
 
-Then, put the new file in a location in your PATH—`~/.local/bin` is recommended, on Linux.
-
-Or you could just have `plug` do it for you—add the following to your kakrc (again, please pay attention to where you output the file):
+Or you could just have `plug` do it for you—add the following to your kakrc:
 
 ```
 plug "kak-lsp/scrollbar.kak" do %{
-    gcc kak-calc-scrollbar.c -o ~/.local/bin/kak-calc-scrollbar
+    gcc kak-calc-scrollbar.c -o kak-calc-scrollbar
 }
 ```
 

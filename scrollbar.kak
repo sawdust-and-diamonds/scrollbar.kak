@@ -60,7 +60,7 @@ define-command calculate-scrollbar-flags -hidden -override %{
                 "$kak_opt_scrollbar_sel_char" \
                 "$kak_buf_line_count" \
                 "$kak_window_height"
-        echo "set-option buffer scrollbar_flags $kak_timestamp " $(kak-calc-scrollbar "$@")
+        echo "set-option buffer scrollbar_flags $kak_timestamp " $("$kak_opt_scrollbar_plugin_path"/kak-calc-scrollbar "$@")
     }
 }   
 
