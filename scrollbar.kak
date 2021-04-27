@@ -23,15 +23,15 @@ declare-option -hidden line-specs scrollbar_flags
 # object. See the C file for more details.
 define-command update-scrollbar -hidden -override %{
     eval %sh{
-        set --  $kak_window_range
+        set -- $kak_window_range
         # 1st argument = window start, 2nd = window line count
-        set --  "$1" \
-                "$(( $1 + $3 ))" \
-                "$kak_selections_desc" \
-                "$kak_opt_scrollbar_char" \
-                "$kak_opt_scrollbar_sel_char" \
-                "$kak_buf_line_count" \
-                "$kak_window_height"
+        set -- "$1" \
+               "$(( $1 + $3 ))" \
+               "$kak_selections_desc" \
+               "$kak_opt_scrollbar_char" \
+               "$kak_opt_scrollbar_sel_char" \
+               "$kak_buf_line_count" \
+               "$kak_window_height"
         echo "set-option buffer scrollbar_flags $kak_timestamp " $(kak-calc-scrollbar "$@")
     }
 }   
