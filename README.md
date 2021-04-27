@@ -4,7 +4,7 @@ This is a scrollbar for [*kakoune*](https://github.com/mawww/kakoune), the educa
 
 It uses the line-flagging feature and a compiled script to provide a real-time, smooth-as-silk scrollbar display. A limitation of this is that the scrollbar isn't a clickable UI element—you'll still have to roll your sleeves up and apply finger to keyboard to navigate around that document. This is kak, so you oughtta either be or get used to it!
 
-This is **version 0.0.2**. The whole feature is—and will remain—somewhat experimental, and won't promise anything like a perfect experience, because it's not easy to implement as a plugin.
+This is **version 0.0.4**. The whole feature is—and will remain—somewhat experimental, and won't promise anything like a perfect experience, because it's not easy to implement as a plugin.
 
 ## See selections outside your current view
 
@@ -18,18 +18,20 @@ Then you'll need to compile `kak-calc-scrollbar` to have your scrollbar.kak scri
 It's the simplest C program ever and should be compilable on almost every system. You can either pop into to the command line and enter:
 
 ```
-gcc kak-calc-scrollbar.c -o kak-calc-scrollbar
+make kak-calc-scrollbar
 ```
 
 Or you could just have `plug` do it for you—add the following to your kakrc:
 
 ```
 plug "kak-lsp/scrollbar.kak" do %{
-    gcc kak-calc-scrollbar.c -o kak-calc-scrollbar
+    make kak-calc-scrollbar
 }
 ```
 
-If you prefer to use another compilation system—`clang` for instance—which shouldn't be any problem—then I'll assume you're knowledgeable enough to manage by yourself.
+If there's a problem with using **make** like this, you can use the more verbose, but more proper call to gcc: `gcc kak-calc-scrollbar.c -o kak-calc-scrollbar`. Scrollbar.kak will try to store the compiled tool in the its own plugin folder, but there is the `scrollbar_plugin_path` option if you need to change where the tool is stored.
+
+If you'd prefer to use another compilation system—`clang` for instance—which shouldn't be any problem—then I'll assume you're knowledgeable enough to manage by yourself!
 
 ## Using the scrollbar
 
