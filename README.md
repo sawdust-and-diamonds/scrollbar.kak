@@ -6,6 +6,8 @@ It uses the line-flagging feature and a compiled script to provide a real-time, 
 
 This is **version 0.0.4**. The whole feature is—and will remain—somewhat experimental, and won't promise anything like a perfect experience, because it's not easy to implement as a plugin.
 
+![Scrollbar image](https://i.ibb.co/kSsjsVj/scrollbar.png)
+
 ## See selections outside your current view
 
 The scrollbar will show the locations of your selections as you make them, allowing you to see selections outside of your current view.
@@ -29,13 +31,11 @@ plug "kak-lsp/scrollbar.kak" do %{
 }
 ```
 
-If there's a problem with using **make** like this, you can use the more verbose, but more proper call to gcc: `gcc kak-calc-scrollbar.c -o kak-calc-scrollbar`. Scrollbar.kak will try to store the compiled tool in the its own plugin folder, but there is the `scrollbar_plugin_path` option if you need to change where the tool is stored.
+If there's a problem with using **make** like this, you can use the more verbose, but more proper call to gcc: `gcc kak-calc-scrollbar.c -o kak-calc-scrollbar`.
 
-If you'd prefer to use another compilation system—`clang` for instance—which shouldn't be any problem—then I'll assume you're knowledgeable enough to manage by yourself!
+If you'd prefer to use another compilation system, `clang` for instance—which shouldn't be any problem—then I'll assume you're knowledgeable enough to manage by yourself!
 
 ## Using the scrollbar
-
-![Scrollbar image](https://i.ibb.co/kSsjsVj/scrollbar.png)
 
 Once you have scrollbar.kak and calc-scrollbar-kak installed, there is not much to do. Turn on the `enable-scrollbar` option to make it appear. You can set it for all windows in your `kakrc` like so:
 
@@ -66,19 +66,26 @@ In the meantime, if you have any ideas as to how I can make `scrollbar-kak` more
 There are a number of *face* options you can edit to customize your scrollbar's look:
 
 `Scrollbar`: This sets the main face for your scrollbar column, i.e. its background colour and the main scrollbar colour.
+
 `ScrollbarSel`: Sets the colour for in-view selections.
+
 `ScrollbarHL`: Sets the colour for out-of-view selections, i.e. the scrollbar's display of selections that are outside your current view. I find it helpful to set this to a more... alarming colour, so that you notice when you are editing text outside your current view.
 
 Here are a few examples of how you can change the scrollbar colours. Please enter `:doc faces` into kak for more information:
 
 `set-face global Scrollbar rgb:7080a0,rgb:281090`
+
 `set-face global ScrollbarSel green`
+
 `set-face global ScrollbarHL @Information`
 
 You can change which characters are used for displaying the scrollbar with the following options:
 
 `scrollbar_char` : Sets the character used for the scrollbar.
+
 `scrollbar_sel_char` : Sets the character used for selections.
+
+Scrollbar.kak will try to store the compiled tool in the its own plugin folder, but there is the `scrollbar_plugin_path` option if you need to change where the tool is stored.
 
 If you've set up the scrollbar and played about with adding new highlighters, you might want to push it back to its left-most position on the highlighter stack. To do so, use the `move-scrollbar-to-left` command.
 
