@@ -37,9 +37,11 @@ If you'd prefer to use another compilation system, `clang` for instance—which 
 
 ## Using the scrollbar
 
-Once you have scrollbar.kak and calc-scrollbar-kak installed, there is not much to do. Turn on the `enable-scrollbar` option to make it appear. You can set it for all windows in your `kakrc` like so:
+Once you have scrollbar.kak and calc-scrollbar-kak installed, there is not much to do. Use the `scrollbar-enable` command to make it appear in the current window. You can set it for all windows in your `kakrc` like so:
 
-`set-option global enable-scrollbar true`
+```
+hook global WinCreate .* %{ scrollbar-enable }
+```
 
 ## Features & limitations
 
