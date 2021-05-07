@@ -26,7 +26,7 @@ make kak-calc-scrollbar
 Or you could just have `plug` do it for you—add the following to your kakrc:
 
 ```
-plug "kak-lsp/scrollbar.kak" do %{
+plug "sawdust-and-diamonds/scrollbar.kak" do %{
     make kak-calc-scrollbar
 }
 ```
