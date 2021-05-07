@@ -4,7 +4,7 @@
 
 # Turn on the main scrollbar-drawing hook(s)
 define-command turn-on-scrollbar-hooks -hidden -override %{
-    hook -group scrollbar-kak window RawKey .* update-scrollbar
+    hook -group scrollbar-kak -always window RawKey .* update-scrollbar
 }
 
 # The line-specs option for our scrollbar
