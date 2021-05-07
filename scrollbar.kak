@@ -2,11 +2,6 @@
 #                               Scrollbar.kak                                 #
 ###############################################################################
 
-# Turn on the main scrollbar-drawing hook(s)
-define-command turn-on-scrollbar-hooks -hidden -override %{
-    hook -group scrollbar-kak -always window RawKey .* update-scrollbar
-}
-
 # The line-specs option for our scrollbar
 declare-option -hidden line-specs scrollbar_flags
 
@@ -39,40 +34,37 @@ define-command update-scrollbar -hidden -override %{
     }
 }   
 
-# Launch / update the scrollbar highlighter
-define-command draw-scrollbar -hidden -override %{
-    addhl -override window/scrollbar-kak flag-lines Scrollbar scrollbar_flags
-}
-
-# Remove the scrollbar for this window
-define-command remove-scrollbar -hidden -override %{
-    rmhl window/scrollbar-kak
-    rmhooks window scrollbar-kak
-}
-
 # Move scrollbar to the left when necessary, as a user-activated command.
 define-command move-scrollbar-to-left -override -docstring %{
     Move the scrollbar to the leftmost position in the stack of highlighters.
     } %{
     rmhl window/scrollbar-kak
-    redraw-scrollbar
+    addhl -override window/scrollbar-kak flag-lines Scrollbar scrollbar_flags
 }
 
 ###############################################################################
-#                              Option Handling                                #
+#                              Setup Commands                                 #
 ###############################################################################
 
-# Option to turn scrollbar on and off
-declare-option bool enable_scrollbar false
+define-command scrollbar-enable -docstring %{
+    Enable the scrollbar in the current window
+} %{
+    # Get notified when scrollbar data needs to be updated
+    hook -group scrollbar-kak window RawKey .* update-scrollbar
 
-# Apply hooks when option is turned on
-hook global WinSetOption enable_scrollbar=true %{
-    turn-on-scrollbar-hooks
+    # Update it right now
     update-scrollbar
-    draw-scrollbar
+
+    # Install the scrollbar highlighter
+    addhl -override window/scrollbar-kak flag-lines Scrollbar scrollbar_flags
 }
 
-# Remove hooks when option is turned off
-hook global WinSetOption enable_scrollbar=false %{
-    remove-scrollbar
+define-command scrollbar-disable -docstring %{
+    Disable the scrollbar in the current window
+} %{
+    # Uninstall the scrollbar highlighter
+    rmhl window/scrollbar-kak
+
+    # Don't get notified when the scrollbar needs to be updated
+    rmhooks window scrollbar-kak
 }
