@@ -16,25 +16,6 @@ The scrollbar will show the locations of your selections as you make them, allow
 
 Just put the `scrollbar.kak` into either your plugins or your autoload folder in kak's configuration directory. I highly recommend [plug.kak](https://github.com/andreyorst/plug.kak) to handle this for you.
 
-Then you'll need to compile `kak-calc-scrollbar` to have your scrollbar.kak script use its C-language engine.
-It's the simplest C program ever and should be compilable on almost every system. You can either pop into to the command line and enter:
-
-```
-make kak-calc-scrollbar
-```
-
-Or you could just have `plug` do it for you—add the following to your kakrc:
-
-```
-plug "sawdust-and-diamonds/scrollbar.kak" do %{
-    make kak-calc-scrollbar
-}
-```
-
-If there's a problem with using **make** like this, you can use the more verbose, but more proper call to gcc: `gcc kak-calc-scrollbar.c -o kak-calc-scrollbar`.
-
-If you'd prefer to use another compilation system, `clang` for instance—which shouldn't be any problem—then I'll assume you're knowledgeable enough to manage by yourself!
-
 ## Using the scrollbar
 
 Once you have scrollbar.kak and calc-scrollbar-kak installed, there is not much to do. Use the `scrollbar-enable` command to make it appear in the current window. You can set it for all windows in your `kakrc` like so:
