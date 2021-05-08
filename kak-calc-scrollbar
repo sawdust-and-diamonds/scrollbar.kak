@@ -3,7 +3,7 @@
 # Convert a position a document to a position in our list of flags
 function get_flag_pos(doc_pos,    rel_pos, flag_pos) {
     rel_pos  = (buffer_height>1) ? (doc_pos-1) / (buffer_height-1) : 0
-    flag_pos = int(window_height*rel_pos + 0.5)
+    flag_pos = int(bar_height*rel_pos + 0.5)
     return flag_pos
 }
 
@@ -58,7 +58,7 @@ function set_selection_flags(input,
 function print_flag_string(    i, formats, fmt_i) {
     printf "set-option buffer scrollbar_flags %d", timestamp
     split(" " bar_char " " sel_format2 " " sel_format1, formats)
-    for (i = 0; i <= window_height; i++) {
+    for (i = 0; i <= bar_height; i++) {
         fmt_i = flags_by_line[i];
         if (fmt_i) printf " %d|%s", (i+bar_start), formats[fmt_i]
     }
@@ -67,28 +67,23 @@ function print_flag_string(    i, formats, fmt_i) {
 
 BEGIN {
     # Initialize argument variables
-    bar_start = ARGV[1]
-    bar_end = ARGV[2]
-    sel_str = ARGV[3]
-    bar_char = ARGV[4]
-    sel_char = ARGV[5]
-    buffer_height = ARGV[6]
-    window_height = ARGV[7]
-    timestamp = ARGV[8]
+    raw_window_range = ARGV[1]
+    sel_str = ARGV[2]
+    bar_char = ARGV[3]
+    sel_char = ARGV[4]
+    buffer_height = ARGV[5]
+    timestamp = ARGV[6]
+
+    # window_range is y x height width
+    split(raw_window_range, window_range)
+    bar_start = window_range[1] + 1
+    bar_height = window_range[3]
+    bar_end = bar_start + bar_height
 
     # Create selection format strings
     bar_format = bar_char
     sel_format1 = "{ScrollbarSel}" sel_char
     sel_format2 = "{ScrollbarHL}" sel_char
-
-    # From now on, window_height needs to use a C-style range from 0 to (h-1)
-    window_height--
-
-    # Also, increment bar_start, because for some reason window_range starts counting from 0
-    bar_start = bar_start + 1
-
-    # Sanitize window height (can't paint lower than last line of buffer)
-    if (bar_end > buffer_height) bar_end=buffer_height
 
     # Process scrollbar flags
     set_scrollbar_flags(bar_start, bar_end)

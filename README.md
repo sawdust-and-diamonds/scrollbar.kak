@@ -28,7 +28,7 @@ hook global WinCreate .* %{ scrollbar-enable }
 
 * The scrollbar can't display past the last line of the buffer, meaning that it will start to disappear as your view scrolls past the end of your document.
 
-* It really doesn't work well in heavily line-wrapped documents. Sorry! 
+* In a window where one source line is soft-wrapped across two or more display lines, the scroll thumb size may be inaccurate, since it's not possible to put different flags on different display lines.
 
 * The scrollbar is composed of simple terminal characters. Currently, it doesn't make use of any fancy tricks to make the display less granular than the height of a single character. 
 

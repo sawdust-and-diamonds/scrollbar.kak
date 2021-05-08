@@ -21,15 +21,11 @@ declare-option str scrollbar_sel_char '█'
 # object. See the C file for more details.
 define-command update-scrollbar -hidden -override %{
     eval %sh{
-        set -- $kak_window_range
-        # 1st argument = window start, 2nd = window line count
-        set -- "$1" \
-               "$(( $1 + $3 ))" \
+        set -- "$kak_window_range" \
                "$kak_selections_desc" \
                "$kak_opt_scrollbar_char" \
                "$kak_opt_scrollbar_sel_char" \
                "$kak_buf_line_count" \
-               "$kak_window_height" \
                "$kak_timestamp"
         "$kak_opt_scrollbar_plugin_path"/kak-calc-scrollbar "$@"
     }
