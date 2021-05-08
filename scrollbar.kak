@@ -29,8 +29,9 @@ define-command update-scrollbar -hidden -override %{
                "$kak_opt_scrollbar_char" \
                "$kak_opt_scrollbar_sel_char" \
                "$kak_buf_line_count" \
-               "$kak_window_height"
-        echo "set-option buffer scrollbar_flags $kak_timestamp " $("$kak_opt_scrollbar_plugin_path"/kak-calc-scrollbar  "$@")
+               "$kak_window_height" \
+               "$kak_timestamp"
+        "$kak_opt_scrollbar_plugin_path"/kak-calc-scrollbar "$@"
     }
 }   
 

@@ -56,11 +56,13 @@ function set_selection_flags(input,
 }
 
 function print_flag_string(    i, formats, fmt_i) {
+    printf "set-option buffer scrollbar_flags %d", timestamp
     split(" " bar_char " " sel_format2 " " sel_format1, formats)
     for (i = 0; i <= window_height; i++) {
         fmt_i = flags_by_line[i];
-        if (fmt_i) printf "%d|%s ", (i+bar_start), formats[fmt_i]
+        if (fmt_i) printf " %d|%s", (i+bar_start), formats[fmt_i]
     }
+    print ""
 }
 
 BEGIN {
@@ -72,6 +74,7 @@ BEGIN {
     sel_char = ARGV[5]
     buffer_height = ARGV[6]
     window_height = ARGV[7]
+    timestamp = ARGV[8]
 
     # Create selection format strings
     bar_format = bar_char
