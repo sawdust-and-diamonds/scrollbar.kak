@@ -51,6 +51,7 @@ define-command scrollbar-enable -docstring %{
 } %{
     # Get notified when scrollbar data needs to be updated
     hook -group scrollbar-kak window RawKey .* update-scrollbar
+    hook -group scrollbar-kak window WinResize .* update-scrollbar
 
     # Let other plugins notify us if they change the view without a keypress
     hook -group scrollbar-kak window User ScrollEnd update-scrollbar
