@@ -134,12 +134,13 @@ define-command scrollbar-enable -docstring %{
 } %{
     # Get notified when scrollbar data needs to be updated
     hook -group scrollbar-kak window RawKey .* update-scrollbar
+    hook -group scrollbar-kak window WinResize .* update-scrollbar
 
     # Let other plugins notify us if they change the view without a keypress
     hook -group scrollbar-kak window User ScrollEnd update-scrollbar
 
-    # Update it right now
-    update-scrollbar
+    # Update when a client connects to the window
+    hook -group scrollbar-kak window ClientCreate .* update-scrollbar
 
     # Install the scrollbar highlighter
     addhl -override window/scrollbar-kak flag-lines Scrollbar scrollbar_flags
