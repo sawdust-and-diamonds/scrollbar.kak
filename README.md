@@ -74,9 +74,9 @@ If you've set up the scrollbar and played about with adding new highlighters, yo
 
 ## Integrating with Other Plugins
 
-Most of the time, when the view changes it's because the user pressed a key, so we use Kakoune's `RawKey` hook to trigger redrawing the scrollbar. However, there are ways for the view to move without a keypress, like using `execute-keys` or the `:select` command. If you are the author of a plugin that uses such a technique, and you want the scrollbar to update automatically afterward without having to press a key, you can trigger the `view-scrolled` user hook:
+Most of the time, when the view changes it's because the user pressed a key, so we use Kakoune's `RawKey` hook to trigger redrawing the scrollbar. However, there are ways for the view to move without a keypress, like using `execute-keys` or the `:select` command. If you are the author of a plugin that uses such a technique, and you want the scrollbar to update automatically afterward without having to press a key, you can trigger the `ScrollEnd` user hook:
 
-    trigger-user-hook view-scrolled
+    trigger-user-hook ScrollEnd
 
 ## License
 
